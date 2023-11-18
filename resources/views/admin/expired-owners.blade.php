@@ -1,38 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          {{ __('オーナー一覧') }}
+           {{-- 期限切れオーナー一覧 --}}
+           {{ __('期限切れオーナー一覧') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                {{-- <div class="p-6 text-gray-900">
-                    <div>
-                        <h3>エロクアント</h3>
-                        <ul>
-                            @foreach ($e_all as $e_owner)
-                            <li>
-                                {{ $e_owner->name }}：
-                                {{ $e_owner->created_at->diffForHumans();
-                                }}
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div>
-                        <h3>クエリビルダ</h3>
-                        <ul>
-                            @foreach ($q_get as $q_owner)
-                            <li>
-                                {{ $q_owner->name }}：
-                                {{ Carbon\Carbon::parse($q_owner->created_at)->diffForHumans() }}
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div> --}}
                 <div class="p-6 text-gray-900">
                     <section class="text-gray-600 body-font">
                         <div class="container px-5 mx-auto">
@@ -56,38 +32,27 @@
                                                 メールアドレス</th>
                                             <th
                                                 class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
-                                                作成日</th>
-                                            <th
-                                                class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
-                                            </th>
+                                                期限が切れた日</th>
                                             <th
                                                 class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">
                                             </th>
-                                            <th
-                                                class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br">
-                                            </th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($owners as $owner)
+                                        @foreach ($expiredOwners as $owner)
                                         <tr>
                                             <td class="px-4 py-3">{{ $owner->name }}</td>
                                             <td class="px-4 py-3">{{ $owner->email }}</td>
-                                            <td class="px-4 py-3">{{$owner->created_at->diffForHumans();}} </td>
-                                            <td class="px-4 py-3">
-                                                <button type="submit"
-                                                    onclick="location.href='{{ route('admin.owners.edit', ['owner' => $owner->id]) }}'"
-                                                    class="text-white bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-lg">編集</button>
-                                            </td>
+                                            <td class="px-4 py-3">{{$owner->deleted_at->diffForHumans();}} </td>
 
-                                            <form id="delete_{{ $owner->id }}" action="{{ route('admin.owners.destroy', ['owner' => $owner->id]) }}" method="POST">
-                                                @method('delete')
+                                            <form id="delete_{{ $owner->id }}" action="{{ route('admin.expired-owners.destroy', ['owner' => $owner->id]) }}" method="POST">
                                                 @csrf
                                                 <td class="px-4 py-3">
                                                     <a href="#"
                                                         data-id={{ $owner->id }}
                                                         onclick="deletePost(this)"
-                                                        class="text-white bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded text-lg">削除</a>
+                                                        class="text-white bg-red-500 border-0 py-2 px-4 focus:outline-none hover:bg-red-600 rounded text-lg">完全に削除</a>
                                                 </td>
                                             </form>
                                         </tr>

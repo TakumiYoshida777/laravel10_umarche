@@ -1,21 +1,18 @@
 @props(['status'=>'info'])
 
-{{-- @php
-if($status==='info'){$bgColor = 'bg-bulue-300';}
-if($status === 'error'){$bgColor = 'bg-red-500';}
-@endphp --}}
-
-{{-- @if(session('message'))
-<div class="{{ $bgColor }} w-1/2 mx-auto p-2 ">
-    {{ session('message') }}
-</div>
-@endif --}}
-
 @if ($message = Session::get('success'))
-<div class="alert alert-success alert-dismissible fade show bg-bulue-300" role="alert">
-    <strong>{{ $message }}</strong>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+    @if(session('status') === 'info') {
+        <div class="alert alert-success alert-dismissible fade show bg-bulue-300" role="alert">
+            <strong>{{ $message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }@elseif(session('status') === 'alert') {
+        <div class="alert alert-success alert-dismissible fade show bg-red-300" role="alert">
+            <strong>{{ $message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @endif
 @endif
 
 @if ($message = Session::get('error'))

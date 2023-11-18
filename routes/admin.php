@@ -18,9 +18,8 @@ use App\Http\Controllers\Admin\OwnersController;
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| ここでアプリケーションのウェブルートを登録できます。これらのルートは、RouteServiceProvider によって読み込まれ、
+| すべてが "web" ミドルウェアグループに割り当てられます。素晴らしいものを作りましょう！
 |
 */
 
@@ -30,7 +29,11 @@ Route::get('/', function () {
 
 Route::resource('owners', OwnersController::class)->middleware('auth:admin');
 
-
+Route::prefix('expired-owners')->
+    middleware('auth:admin')->group(function(){
+        Route::get('index', [OwnersController::class, 'expiredOwnerIndex'])->name('expired-owners.index');
+        Route::post('destroy/{owner}', [OwnersController::class, 'expiredOwnerDestroy'])->name('expired-owners.destroy');
+});
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
@@ -68,6 +71,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth:admin')->group(function () {
+    // メールアドレスの確認
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 
@@ -79,13 +83,16 @@ Route::middleware('auth:admin')->group(function () {
         ->middleware('throttle:6,1')
         ->name('verification.send');
 
+    // パスワードの確認
     Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])
         ->name('password.confirm');
 
     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 
+    // パスワードの変更
     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
 
+    // ログアウト
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });
