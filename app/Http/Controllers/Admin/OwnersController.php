@@ -67,8 +67,8 @@ class OwnersController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        try{
-            DB::transaction(function () use($request) {
+        try {
+            DB::transaction(function () use ($request) {
                 $owner = Owner::create([
                     'name' => $request->name,
                     'email' => $request->email,
@@ -83,7 +83,7 @@ class OwnersController extends Controller
                     'is_selling' => true
                 ]);
             }, 2);
-        }catch(Throwable $e){
+        } catch (Throwable $e) {
             Log::error($e);
             throw $e;
         }
@@ -91,7 +91,7 @@ class OwnersController extends Controller
 
         return redirect()
             ->route('admin.owners.index')
-            ->with(['success'=> 'オーナー登録を実施しました。','status' => 'info']);
+            ->with(['success' => 'オーナー登録を実施しました。', 'status' => 'info']);
     }
 
     /**
@@ -124,7 +124,7 @@ class OwnersController extends Controller
         $owner->save;
 
         return redirect(route('admin.owners.index'))
-        ->with(['success'=> 'オーナー情報を更新しました。','status' => 'info']);
+            ->with(['success' => 'オーナー情報を更新しました。', 'status' => 'info']);
     }
 
     /**
@@ -135,19 +135,20 @@ class OwnersController extends Controller
         // dd('削除処理');
         Owner::findOrFail($id)->delete();
         return redirect(route('admin.owners.index'))
-            ->with(['success'=> 'オーナー情報を削除しました。','status' => 'alert']);
+            ->with(['success' => 'オーナー情報を削除しました。', 'status' => 'alert']);
     }
 
     // 期限切れのオーナー一覧を取得
-    public function expiredOwnerIndex(){
+    public function expiredOwnerIndex()
+    {
         $expiredOwners = Owner::onlyTrashed()->get();
         return view('admin.expired-owners', compact('expiredOwners'));
     }
-    
-    
-    public function expiredOwnerDestroy($id){
-        Owner::onlyTrashed()->findOrFail($id)->forceDelete();
-        return redirect()->route('admin.expired-owners.index'); 
-    }
 
+
+    public function expiredOwnerDestroy($id)
+    {
+        Owner::onlyTrashed()->findOrFail($id)->forceDelete();
+        return redirect()->route('admin.expired-owners.index');
+    }
 }
