@@ -7,12 +7,11 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Name
+    | アプリケーション名
     |--------------------------------------------------------------------------
     |
-    | This value is the name of your application. This value is used when the
-    | framework needs to place the application's name in a notification or
-    | any other location as required by the application or its packages.
+    | この値はアプリケーションの名前です。この値は、フレームワークが通知や
+    | アプリケーションまたはそのパッケージに必要な他の場所にアプリケーションの名前を配置する必要がある場合に使用されます。
     |
     */
 
@@ -20,12 +19,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Environment
+    | アプリケーション環境
     |--------------------------------------------------------------------------
     |
-    | This value determines the "environment" your application is currently
-    | running in. This may determine how you prefer to configure various
-    | services the application utilizes. Set this in your ".env" file.
+    | この値は、アプリケーションが現在実行されている「環境」を決定します。
+    | これにより、アプリケーションが利用するさまざまなサービスをどのように構成するかを決定することができます。
+    | これは「.env」ファイルで設定してください。
     |
     */
 
@@ -33,12 +32,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Debug Mode
+    | アプリケーションデバッグモード
     |--------------------------------------------------------------------------
     |
-    | When your application is in debug mode, detailed error messages with
-    | stack traces will be shown on every error that occurs within your
-    | application. If disabled, a simple generic error page is shown.
+    | アプリケーションがデバッグモードにある場合、詳細なエラーメッセージと
+    | スタックトレースが発生したエラーごとに表示されます。
+    | 無効にすると、シンプルな汎用エラーページが表示されます。
     |
     */
 
@@ -46,12 +45,11 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application URL
+    | アプリケーションURL
     |--------------------------------------------------------------------------
     |
-    | This URL is used by the console to properly generate URLs when using
-    | the Artisan command line tool. You should set this to the root of
-    | your application so that it is used when running Artisan tasks.
+    | このURLは、Artisanコマンドラインツールを使用してURLを適切に生成するために
+    | コンソールで使用されます。アプリケーションのルートに設定してください。
     |
     */
 
@@ -61,12 +59,11 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Timezone
+    | アプリケーションタイムゾーン
     |--------------------------------------------------------------------------
     |
-    | Here you may specify the default timezone for your application, which
-    | will be used by the PHP date and date-time functions. We have gone
-    | ahead and set this to a sensible default for you out of the box.
+    | ここで、PHPの日付および日時関数で使用されるデフォルトのタイムゾーンを指定できます。
+    | これは、デフォルトで合理的な値に設定されています。
     |
     */
 
@@ -74,12 +71,11 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Locale Configuration
+    | アプリケーションロケール構成
     |--------------------------------------------------------------------------
     |
-    | The application locale determines the default locale that will be used
-    | by the translation service provider. You are free to set this value
-    | to any of the locales which will be supported by the application.
+    | アプリケーションロケールは、翻訳サービスプロバイダで使用されるデフォルトのロケールを決定します。
+    | アプリケーションでサポートされるロケールのいずれかにこの値を設定できます。
     |
     */
 
@@ -87,12 +83,11 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Fallback Locale
+    | アプリケーションフォールバックロケール
     |--------------------------------------------------------------------------
     |
-    | The fallback locale determines the locale to use when the current one
-    | is not available. You may change the value to correspond to any of
-    | the language folders that are provided through your application.
+    | フォールバックロケールは、現在のロケールが利用できない場合に使用するロケールを決定します。
+    | この値を、アプリケーションを介して提供される言語フォルダのいずれかに対応する値に変更できます。
     |
     */
 
@@ -100,12 +95,11 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Faker Locale
+    | Fakerロケール
     |--------------------------------------------------------------------------
     |
-    | This locale will be used by the Faker PHP library when generating fake
-    | data for your database seeds. For example, this will be used to get
-    | localized telephone numbers, street address information and more.
+    | このロケールは、Faker PHPライブラリがデータベースシードの偽のデータを生成する際に使用されます。
+    | たとえば、これは、地域化された電話番号、住所情報などを取得するために使用されます。
     |
     */
 
@@ -113,12 +107,12 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Encryption Key
+    | 暗号化キー
     |--------------------------------------------------------------------------
     |
-    | This key is used by the Illuminate encrypter service and should be set
-    | to a random, 32 character string, otherwise these encrypted strings
-    | will not be safe. Please do this before deploying an application!
+    | このキーはIlluminate暗号化サービスによって使用され、ランダムな32文字の文字列に設定する必要があります。
+    | そうしないと、これらの暗号化された文字列は安全ではありません。
+    | アプリケーションを展開する前に、必ず行ってください！
     |
     */
 
@@ -128,14 +122,13 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Maintenance Mode Driver
+    | メンテナンスモードドライバ
     |--------------------------------------------------------------------------
     |
-    | These configuration options determine the driver used to determine and
-    | manage Laravel's "maintenance mode" status. The "cache" driver will
-    | allow maintenance mode to be controlled across multiple machines.
+    | これらの構成オプションは、Laravelの「メンテナンスモード」ステータスを決定および管理するために使用されるドライバを決定します。
+    | 「cache」ドライバを使用すると、メンテナンスモードを複数のマシンで制御できます。
     |
-    | Supported drivers: "file", "cache"
+    | サポートされているドライバ:「file」、「cache」
     |
     */
 
@@ -146,22 +139,22 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Autoloaded Service Providers
+    | 自動読み込みサービスプロバイダ
     |--------------------------------------------------------------------------
     |
-    | The service providers listed here will be automatically loaded on the
-    | request to your application. Feel free to add your own services to
-    | this array to grant expanded functionality to your applications.
+    | ここにリクエスト時に自動的に読み込まれるサービスプロバイダがリストされます。
+    | アプリケーションに拡張機能を付与するために、この配列に独自のサービスを追加してください。
     |
     */
 
     'providers' => ServiceProvider::defaultProviders()->merge([
         /*
-         * Package Service Providers...
+         * パッケージサービスプロバイダ...
          */
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
-         * Application Service Providers...
+         * アプリケーションサービスプロバイダ...
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
@@ -173,17 +166,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Class Aliases
+    | クラスエイリアス
     |--------------------------------------------------------------------------
     |
-    | This array of class aliases will be registered when this application
-    | is started. However, feel free to register as many as you wish as
-    | the aliases are "lazy" loaded so they don't hinder performance.
+    | このクラスエイリアスの配列は、このアプリケーションが開始されるときに登録されます。
+    | ただし、エイリアスは「遅延」ロードされるため、パフォーマンスに支障をきたしません。
     |
     */
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        'InterventionImage' => Intervention\Image\Facades\Image::class
+
     ])->toArray(),
 
 ];
+
