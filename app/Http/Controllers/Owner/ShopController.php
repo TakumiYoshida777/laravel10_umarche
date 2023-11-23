@@ -39,9 +39,10 @@ class ShopController extends Controller
 
     public function index()
     {
+        // phpinfo();
+        // $test =123;
         $ownerId = Auth::id();
         $shops = Shop::where('owner_id', $ownerId)->get();
-
         return view('owner.shops.index', compact('shops'));
     }
 
@@ -52,15 +53,35 @@ class ShopController extends Controller
         return view('owner.shops.edit', compact('shop'));
     }
 
-    public function update(UploadImageRequest $request): RedirectResponse
+    public function update(UploadImageRequest $request, $id): RedirectResponse
     {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'information' => ['required', 'string', 'lowercase', 'max:1000'],
+            // 'is__selling' => 'required'
+        ]);
+
         $imageFile = $request->image; //一時保存
         if (!is_null($imageFile) && $imageFile->isValid()) {
-        //    $fileNameToStore = ImageService::upload($imageFile, 'shops');
             $imageService = new ImageService($imageFile, 'shops');
             $fileNameToStore = $imageService->upload();
         }
 
-        return redirect()->route('owner.shops.index');
+        $shop = Shop::findOrFail($id);
+        $shop->name = $request->name;
+        $shop->information = $request->information;
+        $shop->is_selling = $request->is_selling;
+        if (!is_null($imageFile) && $imageFile->isValid()) {
+            $shop->filename = $fileNameToStore;
+        }
+
+        $shop->save();
+
+        return redirect()
+            ->route('owner.shops.index')
+            ->with([
+                'message' => '店舗情報を更新しました。',
+                'status' => 'info'
+            ]);
     }
 }
