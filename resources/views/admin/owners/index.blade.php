@@ -81,8 +81,8 @@
                                             </td>
 
                                             <form id="delete_{{ $owner->id }}" action="{{ route('admin.owners.destroy', ['owner' => $owner->id]) }}" method="POST">
-                                                @method('delete')
                                                 @csrf
+                                                @method('delete')
                                                 <td class="md:px-4 py-3">
                                                     <a href="#"
                                                         data-id={{ $owner->id }}

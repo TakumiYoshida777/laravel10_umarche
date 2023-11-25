@@ -1,17 +1,18 @@
 @props(['status'=>'info'])
 
+<div class="mb-4">
+
 @if ($message = Session::get('success'))
-    @if(session('status') === 'info') {
+    @if(session('status') === 'info') 
         <div class="alert alert-success alert-dismissible fade show bg-bulue-300" role="alert">
             <strong>{{ $message }}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    }@elseif(session('status') === 'alert') {
+    @elseif(session('status') === 'alert') 
         <div class="alert alert-success alert-dismissible fade show bg-red-300" role="alert">
             <strong>{{ $message }}</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-    }
     @endif
 @endif
 
@@ -42,3 +43,5 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
+
+</div>
