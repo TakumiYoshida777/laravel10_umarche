@@ -54,9 +54,9 @@ class ShopController extends Controller
     public function update(UploadImageRequest $request, $id): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:50'],
             'information' => ['required', 'string', 'lowercase', 'max:1000'],
-            // 'is__selling' => 'required'
+            'is__selling' => 'required'
         ]);
 
         $imageFile = $request->image; //一時保存

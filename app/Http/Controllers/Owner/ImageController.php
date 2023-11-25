@@ -20,7 +20,7 @@ class ImageController extends Controller
 
         $this->middleware(function ($request, $next) {
 
-            $id = $request->route()->parameter('image'); //shopのid取得
+            $id = $request->route()->parameter('image'); //imageのid取得
             if (!is_null($id)) { // null判定
                 $imagesOwnerId = Image::findOrFail($id)->owner->id;
                 $imageId = (int)$imagesOwnerId; // キャスト 文字列→数値に型変換
@@ -76,19 +76,13 @@ class ImageController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        //
+        $image = Image::findOrFail($id);
+        // dd(Image::findOrFail($id));
+        return view('owner.images.edit', compact('image'));
     }
 
     /**
@@ -96,7 +90,20 @@ class ImageController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => ['string', 'max:50'],
+        ]);
+        
+        $image = Image::findOrFail($id);
+        $image->title = $request->title;
+        $image->save();
+        
+        return redirect()
+            ->route('owner.images.index')
+            ->with([
+                'message' => '画像情報を更新しました。',
+                'status' => 'info'
+            ]);
     }
 
     /**
